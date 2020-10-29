@@ -1,0 +1,41 @@
+>>> dojos.objects.create(name="Dojo 1", city="Seattle", state="WA")
+<dojos: dojos object (1)>
+>>> dojos.objects.create(name="Dojo 2", city="Chicago", state="IL")
+<dojos: dojos object (2)>
+>>> dojos.objects.create(name="Dojo 3", city="San Jose", state="CA")
+<dojos: dojos object (3)>
+>>> c=dojos.objects.get(id=1)
+>>> c.delete()
+>>> c=dojos.objects.get(id=2)
+>>> c.delete()
+(1, {'dojo_ninjas_app.ninjas': 0, 'dojo_ninjas_app.dojos': 1})
+>>> c=dojos.objects.get(id=3)
+>>> c.delete()
+>>> dojos.objects.create(name="Dojo 2", city="Chicago", state="IL")
+<dojos: dojos object (4)>
+>>> dojos.objects.create(name="Dojo 3", city="San Jose", state="CA")
+<dojos: dojos object (5)>
+>>> dojos.objects.create(name="Dojo 1", city="Seattle", state="WA")
+<dojos: dojos object (5)>
+>>> seattle=dojos.objects.get(id=6)
+>>> seattle.city
+'Seattle'
+>>> ninjas.objects.create(dojo=seattle, first_name="Ben", last_name="Cossum")
+<ninjas: ninjas object (1)>
+>>> ninjas.objects.create(dojo=seattle, first_name="Vin", last_name="Odinson")
+<ninjas: ninjas object (2)>
+>>> ninjas.objects.create(dojo=seattle, first_name="Stephanie", last_name="Parker")
+<ninjas: ninjas object (3)>
+dojo1=dojos.objects.get(id=6)
+>>> ninjas.objects.filter(dojo=dojo1)
+<QuerySet [<ninjas: ninjas object (1)>, <ninjas: ninjas object (2)>, <ninjas: ninjas object (3)>]>
+>>> first_dojo=dojos.objects.first()
+>>> last_dojo=dojos.objects.last()
+>>> ninjas.objects.filter(dojo=first_dojo)
+<QuerySet [<ninjas: ninjas object (4)>, <ninjas: ninjas object (5)>, <ninjas: ninjas object (6)>]>
+>>> ninjas.objects.filter(dojo=last_dojo)
+<QuerySet [<ninjas: ninjas object (1)>, <ninjas: ninjas object (2)>, <ninjas: ninjas object (3)>]>
+>>> ninjas.objects.last().dojo
+<dojos: dojos object (5)>
+dojos.objects.create(name="Dojo 4", city="Gotham", state="DC", desc="A dark dojo")
+<dojos: dojos object (7)>

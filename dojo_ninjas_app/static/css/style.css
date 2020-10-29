@@ -1,0 +1,21 @@
+#container {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+#container > div {
+  width: 50%;
+  height: 100vh;
+}
+#left {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+#left > section {
+  margin: 0 2em;
+}
+#right {
+  overflow-y: scroll;
+  border-top: 2px solid black;
+}
